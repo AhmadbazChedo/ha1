@@ -105,5 +105,26 @@ class CalculatorTest {
         String actual = calc.readScreen();
         assertEquals(expected, actual);
     }
+
+
+    @Test
+    @DisplayName("should reset operation after pressing equals and starting new input")
+    void testInputAfterEquals() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey(); // Ergebnis: 8
+
+        calc.pressDigitKey(2); // Neue Eingabe sollte nicht zur Operation führen
+
+        String expected = "2"; // Erwartet, dass der Bildschirm '2' zeigt, nicht '10'
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
+
 
