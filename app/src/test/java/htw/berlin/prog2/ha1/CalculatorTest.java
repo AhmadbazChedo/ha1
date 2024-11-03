@@ -90,5 +90,20 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("should calculate the result of multiple additions sequentially")
+    void testMultipleAdditions() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey(); // Ergebnis: 3
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey(); // Ergebnis: 6
+        String expected = "6";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
 }
 
