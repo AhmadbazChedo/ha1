@@ -109,20 +109,34 @@ class CalculatorTest {
 
 
     @Test
-    @DisplayName("should return 0 when calculating the square root of zero")
-    void testUnaryOperationWithZero() {
+    @DisplayName("should display result after getting the scare root of 4")
+    void testSquareRootOfFour() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(0); // Eingabe von 0
-        calc.pressUnaryOperationKey("√"); // Quadratwurzel
+        calc.pressDigitKey(4);
+        calc.pressUnaryOperationKey("√");
 
-        String expected = "0"; // Erwartetes Ergebnis: √0 = 0
+        String expected = "2";
         String actual = calc.readScreen();
 
-        assertEquals(expected, actual); // Dieser Test sollte fehlschlagen, wenn der Bugfix nicht vorhanden ist
+        assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("the latest value should not be deleted after pressing the Clear Key once")
+    void testCeKey() {
+        Calculator calc = new Calculator();
 
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(1);
+        calc.pressClearKey();
+
+        String expected = "1.0";
+        String actual = calc.giveLatestValue();
+
+        assertEquals(expected, actual);
 }
 
 
+}
