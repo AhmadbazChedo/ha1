@@ -109,18 +109,19 @@ class CalculatorTest {
 
 
     @Test
-    @DisplayName("should display error when inverting zero")
-    void testInversionOfZero() {
+    @DisplayName("should return 0 when calculating the square root of zero")
+    void testUnaryOperationWithZero() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(0);
-        calc.pressUnaryOperationKey("1/x");
+        calc.pressDigitKey(0); // Eingabe von 0
+        calc.pressUnaryOperationKey("√"); // Quadratwurzel
 
-        String expected = "Error";
+        String expected = "0"; // Erwartetes Ergebnis: √0 = 0
         String actual = calc.readScreen();
 
-        assertEquals(expected, actual);
+        assertEquals(expected, actual); // Dieser Test sollte fehlschlagen, wenn der Bugfix nicht vorhanden ist
     }
+
 
 }
 
